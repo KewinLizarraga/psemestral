@@ -7,7 +7,7 @@
  */
 
 require_once '../model/producto.php';
-$codigo=$_GET['codigoProducto'];
+$codigo=$_GET['cod'];
 
 $cn=new producto();
 
