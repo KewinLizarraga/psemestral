@@ -11,10 +11,10 @@ and open the template in the editor.
     </head>
     <body>
         <?php
-        $codigo=$_GET['codigoProducto'];
+        $codigo=$_GET['cod'];
         ?>
         
-        <h4>Eliminar el registro de Codigo: <?php echo $codigo ?></h4>
+        <h4>Eliminar el registro de Codigo: <?php echo $codigo; ?></h4>
         <p>
             <a href="../controller/deleteProducto.php?cod=<?php echo $codigo ?>">ACEPTAR</a> &nbsp; &nbsp;
             <a href="formProductos.php">CANCELAR</a>
