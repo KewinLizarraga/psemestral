@@ -13,6 +13,7 @@ and open the template in the editor.
         <CENTER>
             <h4>PAGINA DE INICIO</h4>
             <p><a href="formProductos.php">PRODUCTOS</a></p>
+            <p><a href="formVentas.php">VENTAS</a></p>
         </CENTER>
         
         <?php
