@@ -10,6 +10,7 @@ and open the template in the editor.
         <title></title>
     </head>
     <body>
+        <p><a href="formRegistrarProductos.php">REGISTRAR PRODUCTO</a></p>
         <center>
             <table border="1">
                 <thead>
