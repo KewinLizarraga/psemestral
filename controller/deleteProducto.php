@@ -11,7 +11,7 @@ $codigo=$_GET['cod'];
 
 $cn=new producto();
 
-if($cn->eliminarProducto($codigo)){
+if($cn->eliminarProductos($codigo)){
     $ruta='location:../view/formProductos.php';
     header($ruta);
 }
