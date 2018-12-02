@@ -52,7 +52,7 @@ class producto {
     }
     
     // Delete productos
-    public function eliminarProducto($codigo) {
+    public function eliminarProductos($codigo) {
         $cn=new conexion();
         $cn->conectar();
         $sql="DELETE FROM producto WHERE codigoProducto=$codigo";
