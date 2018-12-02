@@ -21,7 +21,7 @@ class venta {
     public function setVentaByCodigo($codigo){
         $cn=new conexion();
         $cn->conectar();
-        $sql="SELECT FROM venta WHERE codigoVenta=".$codigo;
+        $sql="SELECT * FROM venta WHERE codigoVenta=".$codigo;
         $resultado=$cn->getEjecucionQuery($sql);
         
         if($resultado->num_rows > 0){   // Verificar si tiene registro
@@ -35,32 +35,32 @@ class venta {
         $cn->cerrarConexion();
     }
     
-    // Create venta
-    public function registrarVenta($cliente, $fecha) {
+    // Create ventas
+    public function registrarVentas($cliente, $fecha) {
         $cn=new conexion();
         $cn->conectar();
-        $sql="INSERT INTO venta(cliente,fehca) VALUES('$cliente','$fecha')";
+        $sql="INSERT INTO venta(cliente,fecha) VALUE('$cliente','$fecha')";
         return $cn->setEjecucionQuery($sql);
     }
     
-    // Update venta
-    public function actualizarVenta($codigo,$cliente,$fecha) {
+    // Update ventas
+    public function actualizarVentas($codigo,$cliente,$fecha) {
         $cn= new conexion();
         $cn->conectar();
         $sql="UPDATE venta SET cliente='$cliente',fecha='$fecha' WHERE codigoVenta=$codigo";
         return $cn->setEjecucionQuery($sql);
     }
     
-    // Delete venta
-    public function eliminarVenta($codigo) {
+    // Delete ventas
+    public function eliminarVentas($codigo) {
         $cn=new conexion();
         $cn->conectar();
         $sql="DELETE FROM venta WHERE codigoVenta=$codigo";
         return $cn->setEjecucionQuery($sql);
     }
     
-    // Metodo reporte venta
-    public function getListaVenta( ) {
+    // Metodo reporte ventas
+    public function getListaVentas( ) {
         $cn=new conexion();
         $cn->conectar();
         $sql="SELECT * FROM venta";
