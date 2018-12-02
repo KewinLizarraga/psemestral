@@ -8,7 +8,7 @@
 
 require_once '../model/producto.php';
 
-$codigo=$_POST['codigoProducto'];
+$codigo=$_POST['codigo'];
 $nombre=$_POST['nombre'];
 $precio=$_POST['precio'];
 
