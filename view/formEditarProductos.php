@@ -12,8 +12,8 @@ and open the template in the editor.
     <body>
         <?php
         require_once '../model/producto.php';
-        if(isset($_GET['codigoProducto'])){
-            $codigo=$_GET['codigoProducto'];
+        if(isset($_GET['codigo'])){
+            $codigo=$_GET['codigo'];
             $cn=new producto();
             $cn->setProductoByCodigo($codigo);
             $nombre=$cn->getNombre();
