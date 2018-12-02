@@ -14,7 +14,7 @@ $precio=$_POST['precio'];
 
 $obj=new producto();
 if($obj->registrarProductos($nombre, $precio)){
-    $ruta="location:../view/formRegistrarProductos.php";
+    $ruta="location:../view/formProductos.php";
 }
 
 header($ruta);
