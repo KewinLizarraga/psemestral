@@ -26,7 +26,7 @@ class producto {
         
         if($resultado->num_rows > 0){   // Verifica si tiene registro
             $registro=$resultado->fetch_array(MYSQLI_ASSOC);
-            $this->codigo=$registro['codicoProducto'];
+            $this->codigo=$registro['codigoProducto'];
             $this->nombre=$registro['nombre'];
             $this->precio=$registro['precio'];
         }

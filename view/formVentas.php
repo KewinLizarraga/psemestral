@@ -8,9 +8,13 @@ and open the template in the editor.
     <head>
         <meta charset="UTF-8">
         <title></title>
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="js/main.js"></script>
     </head>
     <body>
         <p><a href="formRegistrarVentas.php">REGISTRAR VENTA</a></p>
+        <p><a href="index.php"><<<<<.RETROCEDER</a></p>
         <center>
             <table border="1">
                 <thead>

@@ -11,6 +11,7 @@ and open the template in the editor.
     </head>
     <body>
         <p><a href="formRegistrarProductos.php">REGISTRAR PRODUCTO</a></p>
+        <p><a href="index.php"><<<<<.RETROCEDER</a></p>
         <center>
             <table border="1">
                 <thead>

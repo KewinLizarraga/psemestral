@@ -15,9 +15,6 @@ while ($fila=$resultado->fetch_array(MYSQLI_ASSOC)){
             '<td>'.$fila['codigoVenta'].'</td>
             <td>'.$fila['cliente'].'</td>
             <td>'.$fila['fecha'].'</td>
-            <td>'.
-                '<a href="../view/formEditarVentas.php?cod='.$fila["codigoVenta"].'"><img src="../recursos/edit.png" title="Editar"></a>'.
-                '<a href="../view/formEliminarVentas.php?cod='.$fila["codigoVenta"].'"><img src="../recursos/delete.png" title="Eliminar"></a>'.
-            '<td>
+            
         </tr>';
 }
