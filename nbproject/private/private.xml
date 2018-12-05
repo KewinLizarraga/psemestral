@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/xampp/htdocs/psemestral/view/js/main.js</file>
+            <file>file:/C:/xampp/htdocs/psemestral/view/marcaEliminar.php</file>
+            <file>file:/C:/xampp/htdocs/psemestral/controller/readVenta.php</file>
+            <file>file:/C:/xampp/htdocs/psemestral/model/producto.php</file>
+            <file>file:/C:/xampp/htdocs/psemestral/view/index.php</file>
+            <file>file:/C:/xampp/htdocs/psemestral/view/calcularMonto.php</file>
+            <file>file:/C:/xampp/htdocs/psemestral/controller/listaDetalle.php</file>
+            <file>file:/C:/xampp/htdocs/psemestral/model/conexion.php</file>
+            <file>file:/C:/xampp/htdocs/psemestral/view/formVentas.php</file>
+            <file>file:/C:/xampp/htdocs/psemestral/controller/busqueda.php</file>
+            <file>file:/C:/xampp/htdocs/psemestral/view/formRegistrarVentas.php</file>
+            <file>file:/C:/xampp/htdocs/psemestral/view/agregaListaDetalle.php</file>
+        </group>
+    </open-files>
+</project-private>

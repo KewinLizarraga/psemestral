@@ -12,6 +12,7 @@ class venta {
     private $codigo;
     private $cliente;
     private $fecha;
+    private $total;
     
     public function __construct() {
         
@@ -29,6 +30,7 @@ class venta {
             $this->codigo=$registro['codigoVenta'];
             $this->cliente=$registro['cliente'];
             $this->fecha=$registro['fecha'];
+            $this->total=$registro['total'];
         }
         
         $resultado->free();     // Libera recursos usados
@@ -36,10 +38,11 @@ class venta {
     }
     
     // Create ventas
-    public function registrarVentas($cliente, $fecha) {
+    public function registrarVentas($cliente, $fecha, $total) { // ($total)
         $cn=new conexion();
         $cn->conectar();
-        $sql="INSERT INTO venta(cliente,fecha) VALUE('$cliente','$fecha')";
+//        $sql="INSERT INTO venta(cliente,fecha) VALUE('$cliente','$fecha')";
+        $sql = "INSERT INTO venta(cliente,fecha,total) VALUES ('$cliente','$fecha','$total')";
         return $cn->setEjecucionQuery($sql);
     }
     
@@ -67,6 +70,12 @@ class venta {
         return $cn->getEjecucionQuery($sql);
     }
     
+    public function latest() {
+        $cn=new conexion();
+        $cn->conectar();
+        $sql="SELECT MAX(codigoVenta) AS id FROM venta";
+        return $cn->setEjecucionQuery($sql);
+    }
     
     public function setCodigo($codigo) {
         $this->codigo = $codigo;
@@ -80,6 +89,10 @@ class venta {
         $this->fecha = $fecha;
     }
     
+    public function setTotal($total) {
+        $this->total = $total;
+    }
+    
     public function getCodigo() {
         return $this->codigo;
     }
@@ -90,5 +103,9 @@ class venta {
     
     public function getFecha() {
         return $this->fecha;
+    }
+    
+    public function getTotal() {
+        return $this->total;
     }
 }

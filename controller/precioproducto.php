@@ -8,9 +8,12 @@
 
 require_once '../model/producto.php';
 
-$name = mysqli_real_escape_string($_POST['name']);
+$cod=$_POST['cod'];
+$obj = new producto();
+$obj->setProductoByCodigo($cod);
 
-$age = mysqli_query("SELECT nombre FROM producto WHERE nombre='$name'");
-$age_num_rows = mysqli_num_rows($age);
+//$codigo=$obj->getCodigo();
+//$nombre=$obj->getNombre();
+$precio=$obj->getPrecio();
 
-echo $age_num_rows;
+echo $precio;

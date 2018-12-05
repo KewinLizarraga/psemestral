@@ -4,111 +4,92 @@
  * and open the template in the editor.
  */
 
-function buscar(){
-    
+ $(document).ready(function() {
+    $("#listaproducto").click(function() {                
+        var val = $('#listaproducto').val();
+        document.getElementById('cantidad').value='1';
+        precio(val);
+    });
+});
+
+function precio(cod){
+    var codprod=cod;
+    $.ajax({
+        url: '../controller/precioproducto.php',
+        type: 'POST',
+        data: {
+            cod: codprod,
+        }
+    }).done(function(respuestaServidor){
+        document.getElementById('precio').value=respuestaServidor;
+    });
 }
 
-
-// $(document).ready(function() {
-//    $("#idproducto").click(function() {                
-//        $.ajax({    //create an ajax request to display.php
-//            type: "GET",
-//            url: "producto.php",             
-//            dataType: "html",   //expect html to be returned                
-//            success: function(response){                    
-//                $("#mostrar").html(response); 
-//                //alert(response);
-//            }
-//        });
-//    });
-//});
-
 function agregaLista(){
-    var codigo=document.getElementById('codigo').value;
-    var nombre=document.getElementById('producto').value;
+    var codigo=document.getElementById('listaproducto').value;
+    var nombre=$('#listaproducto option:selected').html();
     var precio=document.getElementById('precio').value;
     var cantidad=document.getElementById('cantidad').value;
     var monto=(precio*cantidad);
     
     $.ajax({
-      url: 'agregaListaDetalle.php',
-      type: 'POST',
+        url: 'agregaListaDetalle.php',
+        type: 'POST',
 
-
-      data: {
-        codigo:codigo,
-        producto:nombre,
-        precio:precio,
-        cantidad:cantidad,
-        monto:monto
+        data: {
+            cod:codigo,
+            prod:nombre,
+            prec:precio,
+            cant:cantidad,
+            mont:monto
         }
-    }).done(
-            function (respuestaServidor)
-            {
-                $('#muestraDetalle').html(respuestaServidor);
-                 calcularTotales();
-                
-            }         
-         );
- limpiar();
- calcularTotales();
+    }).done(function (respuestaServidor){
+        $('#muestraDetalle').html(respuestaServidor);
+        calcularTotales();
+    });
+    limpiar();
+    calcularTotales();
 }
-function limpiar()
-{
+
+function limpiar(){
     document.getElementById('codigo').value="";
     document.getElementById('producto').value="";
     document.getElementById('precio').value="";
     document.getElementById('cantidad').value="";    
 }
-function calcularTotales()
-{
+
+function calcularTotales(){
     var subtotal;
     var igv;
     var total;
+    
     $.ajax({
-        
-      url: 'calcularMonto.php',
-      type: 'POST',
-   /* data: {
-
-        }*/  
-    }).done(
-            function (respuestaServidor)
-            {
-             //  $('#muestraDetalle').html(respuestaServidor);
-              subtotal=Number(respuestaServidor);
-              igv=(subtotal*0.18);
-              total=(subtotal+igv);
-            //mostramos los valores en la interfaz 
-                document.getElementById('subtotal').value=subtotal;
-                document.getElementById('igv').value=igv;
-                document.getElementById('total').value=total;
-               
-            }         
-         );    
- 
+        url: '../controller/calcularMonto.php',
+        type: 'POST', 
+    }).done(function (respuestaServidor){
+        subtotal=Number(respuestaServidor);
+        igv=(subtotal*0.18);
+        total=(subtotal+igv);
+        //mostramos los valores en la interfaz 
+        document.getElementById('subtotal').value=subtotal;
+        document.getElementById('igv').value=igv;
+        document.getElementById('total').value=total;
+    });
 }
 
-function retirarElemento(indice)
-{
-    
+function retirarElemento(indice){
     var i=indice;
     
     $.ajax({
-        
-      url: 'marcaEliminar.php',
-      type: 'POST',
-    data: {
-         posicion:i        
+        url: 'marcaEliminar.php',
+        type: 'POST',
+        data: {
+            posicion:i        
         }
-    }).done(
-            function (respuestaServidor)
-            {
-                $('#muestraDetalle').html(respuestaServidor);
-                calcularTotales();
-            }         
-         );    
-     
+    }).done(function (respuestaServidor){
+        $('#muestraDetalle').html(respuestaServidor);
+        calcularTotales();
+    });
 }
 
 function descontar(){
@@ -116,15 +97,26 @@ function descontar(){
     var total=document.getElementById('total').value;
     
     if(descuento.checked){
-        //alert("marcado");
-        //descontar el 10%
         descuento = 0.9*total;
         document.getElementById('total').value=descuento;
     }
     else{
-       // alert("desmarcado");
-        //volver el monto normal sin descuento.
         limpiar();
         calcularTotales();
     }
+}
+
+function ModalDetalle(indice){
+    var id = indice;
+
+    $.ajax({
+        url: '../controller/modal-detalle.php',
+        type: 'POST',
+        
+        data: {
+            val: id,
+        }
+    }).done(function (respuestaServidor){
+        $('#detalleContenedor').html(respuestaServidor);
+    });
 }

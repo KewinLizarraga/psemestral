@@ -1,10 +1,10 @@
 <?php
 // recupero los valores que llegan del javascript
-$codigo=$_POST['codigo'];
-$producto=$_POST['producto'];
-$precio=$_POST['precio'];
-$cantidad=$_POST['cantidad'];
-$monto=$_POST['monto'];
+$codigo=$_POST['listaproducto'];
+$producto=$_POST['prod'];
+$precio=$_POST['prec'];
+$cantidad=$_POST['cant'];
+$monto=$_POST['mont'];
 
 // guardo los elementos en el arreglo correspondiente
 session_start();

@@ -9,26 +9,24 @@
 require_once 'conexion.php';
 
 class detalleventa {
-    private $codVenta;
-    private $codProducto;
+    private $codigo;
     private $cantidad;
-    private $descuento;
+    private $subtotal; // descuento -> monto
     
     public function __construct() {
         
     }
     
     // Asignación de valores
-    public function setDetalleventaByCodigo($codVenta,$codProducto){
+    public function setDetalleventaByCodigo($codigo){
         $cn=new conexion();
         $cn->conectar();
-        $sql="SELECT FROM detalleventa WHERE codigoVenta=".$codVenta." AND codigoProducto=".$codProducto;
+        $sql="SELECT FROM detalleventa WHERE codigo=".$codigo;
         $resultado=$cn->getEjecucionQuery($sql);
         
         if($resultado->num_rows > 0){   // Verificar si tiene registro
             $registro=$resultado->fetch_array(MYSQLI_ASSOC);
-            $this->codVenta=$registro['codigoVenta'];
-            $this->codProducto=$registro['codigoProducto'];
+            $this->codigo=$registro['codigo'];
             $this->cliente=$registro['cliente'];
             $this->fecha=$registro['fecha'];
         }
@@ -38,28 +36,28 @@ class detalleventa {
     }
     
     // Create detalleventa
-    public function registrarDetalleventa($cantidad, $descuento) {
+    public function registrarDetalleventa($codigoVenta,$codigoProducto,$cantidad, $subtotal) {
         $cn=new conexion();
         $cn->conectar();
-        $sql="INSERT INTO detalleventa(cantidad,descuento) VALUES('$cantidad','$descuento')";
+        $sql="INSERT INTO detalleventa(codigoVenta,codigoProducto,cantidad,subtotal) VALUES('$codigoVenta','$codigoProducto','$cantidad','$subtotal')";
         return $cn->setEjecucionQuery($sql);
     }
     
     // Update detalleventa
-    public function actualizarDetalleventa($codVenta,$codProducto,$cantidad,$descuento) {
+    public function actualizarDetalleventa($cliente,$fecha) {
         $cn= new conexion();
         $cn->conectar();
-        $sql="UPDATE detalleventa SET cantidad='$cantidad',decuento='$descuento' WHERE codigoVenta=$codVenta AND codigoProducto=$codProducto";
+        $sql="UPDATE detalleventa SET cliente='$cliente',fecha='$fecha'";
         return $cn->setEjecucionQuery($sql);
     }
     
     // Delete detalleventa
-    public function eliminarDetalleventa($codVenta,$codProducto) {
-        $cn=new conexion();
-        $cn->conectar();
-        $sql="DELETE FROM detalleventa WHERE codigoVenta=$codVenta AND codigoProducto=$codProducto";
-        return $cn->setEjecucionQuery($sql);
-    }
+//    public function eliminarDetalleventa($codVenta,$codProducto) {
+//        $cn=new conexion();
+//        $cn->conectar();
+//        $sql="DELETE FROM detalleventa WHERE codigoVenta=$codVenta AND codigoProducto=$codProducto";
+//        return $cn->setEjecucionQuery($sql);
+//    }
     
     // Metodo reporte detalleventa
     public function getListaDetalleventa( ) {
@@ -69,6 +67,12 @@ class detalleventa {
         return $cn->getEjecucionQuery($sql);
     }
     
+    public function getListaDetalleventaCodigo($codigo) {
+        $cn=new conexion();
+        $cn->conectar();
+        $sql="SELECT * FROM detalleventa WHERE codigoVenta=".$codigo;
+        return $cn->setEjecucionQuery($sql);
+    }
     
     public function setCodVenta($codVenta) {
         $this->codVenta = $codVenta;
@@ -82,9 +86,13 @@ class detalleventa {
         $this->cantidad = $cantidad;
     }
     
-    public function setDescuento($descuento) {
-        $this->descuento = $descuento;
+    public function setSubtotal($subtotal) {
+        $this->subtotal = $subtotal;
     }
+    
+//    public function setMonto($fecha) {
+//        $this->fecha = $fecha;
+//    }
     
     public function getCodVenta() {
         return $this->codVenta;
@@ -98,7 +106,11 @@ class detalleventa {
         return $this->cantidad;
     }
     
-    public function getDescuento() {
-        return $this->descuento;
+    public function getSubtotal() {
+        return $this->subtotal;
     }
+    
+//    public function getMonto() {
+//        return $this->fecha;
+//    }
 }
